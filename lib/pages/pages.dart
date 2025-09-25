@@ -1,1 +1,1 @@
-export 'curses_page/curses_page.dart';
+export 'curses_page/curses_body.dart';

@@ -1,0 +1,38 @@
+import 'package:finny_test_dev/providers/navigator_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class CustomNavigator extends StatefulWidget {
+  const CustomNavigator({super.key});
+
+  @override
+  State<CustomNavigator> createState() => _CustomNavigatorState();
+}
+
+class _CustomNavigatorState extends State<CustomNavigator> {
+  final List<IconData> _icons = [Icons.home, Icons.pie_chart_outline, Icons.school, Icons.storefront];
+
+  final List<String> _labels = ["Inicio", "Presupuesto", "Academy", "Productos"];
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<NavigatorProvider>(context);
+
+    return BottomNavigationBar(
+      backgroundColor: Colors.white,
+      type: BottomNavigationBarType.fixed,
+      currentIndex: provider.selectedIndex,
+      onTap: (index) {
+        setState(() => provider.selectedIndex = index);
+      },
+      selectedItemColor: Color(0xFFAE55EE),
+      unselectedItemColor: Color(0xFF26272B),
+      showUnselectedLabels: true,
+      items: List.generate(_icons.length, (index) {
+        return BottomNavigationBarItem(
+          icon: Stack(alignment: Alignment.bottomCenter, children: [Icon(_icons[index])]),
+          label: _labels[index],
+        );
+      }),
+    );
+  }
+}
