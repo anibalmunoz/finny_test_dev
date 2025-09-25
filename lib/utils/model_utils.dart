@@ -5,10 +5,11 @@ class ModelUtils {
     return List<T>.from(data.map((item) => fromJson(item)));
   }
 
-  static List<T> fromDbList<T>(
-    List<dynamic> data,
-    T Function(Map<String, dynamic>) fromJson,
-  ) {
+  static List<T> fromDbListJson<T>(List<dynamic> data, T Function(Map<String, dynamic>) fromJson) {
     return List<T>.from(data.map((item) => fromJson(jsonDecode(item['jsondata']))));
+  }
+
+  static List<T> fromDbList<T>(List<Map<String, dynamic>> data, T Function(Map<String, dynamic>) fromDb) {
+    return List<T>.from(data.map((item) => fromDb(item)));
   }
 }

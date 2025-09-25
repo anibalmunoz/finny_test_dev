@@ -11,8 +11,6 @@ class CourseService {
   static final CourseService shared = CourseService._privateConstructor();
 
   Future<List<Module>> fetchData({CategoryModel? category}) async {
-    // final url = Uri.parse('https://learn.microsoft.com/api/catalog/?locale=es-es&type=modules');
-
     final url = Uri.https('learn.microsoft.com', '/api/catalog/', {
       'locale': 'es-es',
       'type': 'modules',
@@ -24,7 +22,6 @@ class CourseService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> decoded = jsonDecode(response.body);
         final List<dynamic> data = decoded['modules'] ?? [];
-        debugPrint('<<<<<<<<<<<<<<<<<<<<<TRAYENDO DATA CURSOS ${data.length} RESULTADOS>>>>>>>>>>>>>>>>>>>>>>>>>');
         return ModelUtils.fromList(data, Module.fromJson);
       } else {
         debugPrint('Error en la petición: ${response.statusCode}');

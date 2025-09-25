@@ -1,5 +1,6 @@
 import 'package:finny_test_dev/pages/construction_page/construction_body.dart';
 import 'package:finny_test_dev/pages/curses_page/curses_body.dart';
+import 'package:finny_test_dev/pages/favorites_page/favorites_body.dart';
 import 'package:finny_test_dev/providers/navigator_provider.dart';
 import 'package:finny_test_dev/themes/app_theme.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
       case 1:
         return ConstructionBody();
       case 3:
-        return ConstructionBody();
+        return FavoritesBody();
       case 2:
       default:
         return CoursesBody();

@@ -8,8 +8,9 @@ import 'package:get/get.dart';
 class CourseCard extends StatelessWidget {
   final Module course;
   final CategoryModel category;
+  final VoidCallback? onReturn;
 
-  const CourseCard({super.key, required this.category, required this.course});
+  const CourseCard({super.key, required this.category, required this.course, this.onReturn});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,10 @@ class CourseCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () => Get.to(CourseDetailPage(course: course, category: category)),
+        onTap: () async {
+          await Get.to(CourseDetailPage(course: course, category: category));
+          onReturn?.call();
+        },
         child: Container(
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(

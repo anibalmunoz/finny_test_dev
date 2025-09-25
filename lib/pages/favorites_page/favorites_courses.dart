@@ -1,19 +1,19 @@
 import 'package:finny_test_dev/models/category_model.dart';
 import 'package:finny_test_dev/models/module_model.dart';
-import 'package:finny_test_dev/services/course_service.dart';
+import 'package:finny_test_dev/repositories/favorites_repository.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CoursesWidget extends StatefulWidget {
+class FavoritesCourses extends StatefulWidget {
   final ScrollController scrollController;
-  const CoursesWidget({super.key, required this.scrollController});
+  const FavoritesCourses({super.key, required this.scrollController});
 
   @override
-  State<CoursesWidget> createState() => _CoursesWidgetState();
+  State<FavoritesCourses> createState() => _FavoritesCoursesState();
 }
 
-class _CoursesWidgetState extends State<CoursesWidget> {
+class _FavoritesCoursesState extends State<FavoritesCourses> {
   int selectedIndex = 0;
   final int _itemsPerPage = 10;
   int _currentMax = 10;
@@ -31,7 +31,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
     CategoryModel(label: 'Deuda', iconAsset: 'assets/icons/credit.png', subject: 'classification-analysis'),
   ];
 
-  Future _future = CourseService.shared.fetchData();
+  Future _future = FavoritesRepository.shared.getAll();
   List<Module> _data = [];
 
   @override
@@ -63,31 +63,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomLabel(label: 'Cursos', icon: Icons.error_outline),
+        CustomLabel(label: 'Favoritos', icon: Icons.star_outline),
         const SizedBox(height: 10),
-        SizedBox(
-          height: 50,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              return CourseFilter(
-                label: categories[index].label,
-                iconAsset: categories[index].iconAsset,
-                isActive: selectedIndex == index,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = index;
-                    _currentMax = _itemsPerPage;
-                    _future = CourseService.shared.fetchData(category: categories[index]);
-                  });
-                },
-              );
-            },
-          ),
-        ),
-        const SizedBox(height: 20),
-
         FutureBuilder(
           future: _future,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -100,7 +77,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
             if (snapshot.data == null || snapshot.data!.isEmpty) {
               return Container(
                 margin: EdgeInsets.only(top: Get.height * 0.15),
-                child: NoExistData(text: 'Ocurrió un error al obtener los cursos'),
+                child: NoExistData(text: 'No se encontraron favoritos'),
               );
             }
             _data = snapshot.data!;
@@ -119,7 +96,15 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                       : const SizedBox.shrink();
                 }
                 final course = _data[index];
-                return CourseCard(category: _getCategoryBySubject(course.subjects ?? []), course: course);
+                return CourseCard(
+                  category: _getCategoryBySubject(course.subjects ?? []),
+                  course: course,
+                  onReturn: () {
+                    setState(() {
+                      _future = FavoritesRepository.shared.getAll();
+                    });
+                  },
+                );
               },
             );
           },

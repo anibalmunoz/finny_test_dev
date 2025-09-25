@@ -1,6 +1,6 @@
 import 'package:finny_test_dev/models/category_model.dart';
 import 'package:finny_test_dev/models/module_model.dart';
-import 'package:finny_test_dev/widgets/favorite_button.dart';
+import 'package:finny_test_dev/pages/favorites_page/favorite_button.dart';
 import 'package:finny_test_dev/widgets/module_widget.dart';
 import 'package:finny_test_dev/widgets/user_avatar.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
@@ -44,7 +44,7 @@ class CourseDetailPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CategoryWidget(category: category),
-                  FavoriteButton(),
+                  FavoriteButton(course: course),
                 ],
               ),
               const SizedBox(height: 15),
