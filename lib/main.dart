@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Finny frontend test',
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.shared.lightTheme(),
       darkTheme: AppTheme.shared.darkTheme(),
       themeMode: AppTheme.shared.isInDarkMode ? ThemeMode.dark : ThemeMode.light,

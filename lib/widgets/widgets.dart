@@ -1,4 +1,5 @@
 export 'app_bar.dart';
+export 'category_widget.dart';
 export 'course_card.dart';
 export 'course_filter.dart';
 export 'custom_label.dart';

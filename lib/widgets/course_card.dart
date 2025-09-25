@@ -1,6 +1,9 @@
 import 'package:finny_test_dev/models/category_model.dart';
 import 'package:finny_test_dev/models/module_model.dart';
+import 'package:finny_test_dev/pages/curses_page/course_detail_page/course_detail_page.dart';
+import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CourseCard extends StatelessWidget {
   final Module course;
@@ -14,7 +17,7 @@ class CourseCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {},
+        onTap: () => Get.to(CourseDetailPage(course: course, category: category)),
         child: Container(
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
@@ -52,21 +55,7 @@ class CourseCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: BoxBorder.all(color: Colors.black26),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(category.iconAsset ?? ''),
-                          const SizedBox(width: 5),
-                          Text(category.label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                    ),
+                    CategoryWidget(category: category),
                     const SizedBox(height: 6),
                     Text(course.title ?? '', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
                     const SizedBox(height: 4),
