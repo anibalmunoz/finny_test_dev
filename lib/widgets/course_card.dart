@@ -22,6 +22,7 @@ class CourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5),
+      margin: EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: BoxBorder.all(color: Colors.black12),
@@ -30,7 +31,27 @@ class CourseCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(imageUrl, width: 100, height: 100, fit: BoxFit.cover),
+            child: imageUrl.isNotEmpty
+                ? Image.network(
+                    imageUrl,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: 100,
+                        height: 100,
+                        color: Colors.grey[300],
+                        child: const Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                      );
+                    },
+                  )
+                : Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.grey[300],
+                    child: const Icon(Icons.image_not_supported, size: 40, color: Colors.grey),
+                  ),
           ),
           const SizedBox(width: 12),
           Expanded(

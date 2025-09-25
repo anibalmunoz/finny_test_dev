@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class RachaWidget extends StatelessWidget {
   final String text;
-  final IconData icon;
-  const RachaWidget({super.key, required this.text, required this.icon});
+  final String assetIcon;
+  const RachaWidget({super.key, required this.text, required this.assetIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class RachaWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: const Color(0xFF7D52F4), size: 18),
+          Image.asset(assetIcon),
           const SizedBox(width: 6),
           Text(
             text,

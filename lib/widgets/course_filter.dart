@@ -4,9 +4,9 @@ class CourseFilter extends StatelessWidget {
   final bool isActive;
   final String label;
   final VoidCallback onTap;
-  final IconData? icon;
+  final String? iconAsset;
 
-  const CourseFilter({super.key, required this.isActive, required this.label, required this.onTap, this.icon});
+  const CourseFilter({super.key, required this.isActive, required this.label, required this.onTap, this.iconAsset});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class CourseFilter extends StatelessWidget {
         child: Center(
           child: Row(
             children: [
-              if (icon != null) Icon(icon, color: Color(0xFF400C5F)),
+              if (iconAsset != null) Image.asset(iconAsset!),
               Text(
                 label,
                 style: TextStyle(
