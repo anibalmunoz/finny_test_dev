@@ -81,7 +81,7 @@ class _FavoritesCoursesState extends State<FavoritesCourses> {
               );
             }
             _data = snapshot.data!;
-            if (_data.length < 10) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
+            if (_data.length < 11) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
             return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

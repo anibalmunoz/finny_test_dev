@@ -83,7 +83,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                     setState(() {
                       _data = filterData;
                       _isFiltered = true;
-                      if (_data.length < 10) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
+                      if (_data.length < 11) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
                     });
                   } else if (filterData != null && filterData.isEmpty) {
                     CommonDialogs.shared.showNotifyDialog(
@@ -143,7 +143,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
             }
             if (!_isFiltered) _originalData = snapshot.data!;
             if (!_isFiltered) _data = snapshot.data!;
-            if (_data.length < 10) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
+            if (_data.length < 11) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
             return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
