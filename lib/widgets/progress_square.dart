@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 
 class ProgressSquare extends StatelessWidget {
   final String quantity;
@@ -15,15 +16,19 @@ class ProgressSquare extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: BoxBorder.all(color: color),
+        border: BoxBorder.all(color: context.isDarkMode ? Colors.white : color),
       ),
       child: Column(
         children: [
           Text(
             quantity,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: color),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: context.isDarkMode ? Color(0xFFDDB8FA) : color,
+            ),
           ),
-          Text(label, style: TextStyle(fontSize: 12, color: color)),
+          Text(label, style: TextStyle(fontSize: 12, color: context.isDarkMode ? Color(0xFFDDB8FA) : color)),
         ],
       ),
     );

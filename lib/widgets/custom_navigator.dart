@@ -1,5 +1,7 @@
 import 'package:finny_test_dev/providers/navigator_provider.dart';
+import 'package:finny_test_dev/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class CustomNavigator extends StatefulWidget {
@@ -18,14 +20,14 @@ class _CustomNavigatorState extends State<CustomNavigator> {
     final provider = Provider.of<NavigatorProvider>(context);
 
     return BottomNavigationBar(
-      backgroundColor: Colors.white,
+      backgroundColor: context.isDarkMode ? Color(0xFF383838) : Colors.white,
       type: BottomNavigationBarType.fixed,
       currentIndex: provider.selectedIndex,
       onTap: (index) {
         setState(() => provider.selectedIndex = index);
       },
-      selectedItemColor: Color(0xFFAE55EE),
-      unselectedItemColor: Color(0xFF26272B),
+      selectedItemColor: AppColors.shared.purple1,
+      unselectedItemColor: context.isDarkMode ? Colors.white : null,
       showUnselectedLabels: true,
       items: List.generate(_icons.length, (index) {
         return BottomNavigationBarItem(

@@ -21,7 +21,6 @@ class AppTheme {
     appBarTheme: AppBarTheme(backgroundColor: Colors.white),
     scaffoldBackgroundColor: Colors.white,
     textButtonTheme: TextButtonThemeData(style: ButtonStyle(overlayColor: WidgetStatePropertyAll(Colors.blue[100]))),
-    // colorScheme: const ColorScheme.light().copyWith(primary: AppColor.shared.mainBlueColor),
     dialogTheme: DialogThemeData(backgroundColor: Colors.white),
   );
 
@@ -29,12 +28,12 @@ class AppTheme {
     dividerColor: Colors.transparent,
     brightness: Brightness.dark,
     textButtonTheme: TextButtonThemeData(style: ButtonStyle(overlayColor: WidgetStatePropertyAll(Colors.blue[100]))),
-    appBarTheme: AppBarTheme(backgroundColor: Color(0xFF4A148C), foregroundColor: Colors.white),
-    // scaffoldBackgroundColor: AppColor.shared.darkBackground,
-    // colorScheme: ColorScheme.dark(primary: AppColor.shared.whiteColor),
-    // bottomSheetTheme: BottomSheetThemeData(backgroundColor: AppColor.shared.darkAppBar),
+    appBarTheme: AppBarTheme(backgroundColor: Color.fromARGB(255, 133, 65, 182), foregroundColor: Colors.white),
+    scaffoldBackgroundColor: Color(0xFF2C2C2C),
+    colorScheme: ColorScheme.dark(primary: Colors.white),
     cardTheme: CardThemeData(color: Colors.transparent, shadowColor: Colors.white24),
     checkboxTheme: CheckboxThemeData(fillColor: WidgetStatePropertyAll(Colors.white)),
-    // dialogTheme: DialogThemeData(backgroundColor: AppColor.shared.darkBackground),
+    textTheme: ThemeData.dark().textTheme.apply(bodyColor: Colors.white, displayColor: Colors.white),
+    iconTheme: IconThemeData(color: Colors.white),
   );
 }

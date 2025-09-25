@@ -1,6 +1,7 @@
 import 'package:finny_test_dev/models/category_model.dart';
 import 'package:finny_test_dev/models/module_model.dart';
 import 'package:finny_test_dev/services/course_service.dart';
+import 'package:finny_test_dev/widgets/common_dialogs.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ class CoursesWidget extends StatefulWidget {
 }
 
 class _CoursesWidgetState extends State<CoursesWidget> {
+  List<Module> _originalData = [];
+  bool _isFiltered = false;
   int selectedIndex = 0;
   final int _itemsPerPage = 10;
   int _currentMax = 10;
@@ -63,7 +66,43 @@ class _CoursesWidgetState extends State<CoursesWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomLabel(label: 'Cursos', icon: Icons.error_outline),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomLabel(label: 'Cursos', icon: Icons.error_outline),
+            IconButton(
+              onPressed: () async {
+                if (_isFiltered) {
+                  setState(() {
+                    _data = List.from(_originalData);
+                    _isFiltered = false;
+                  });
+                } else {
+                  final filterData = await showSearchCoursesDialog(context: context, courses: _originalData);
+                  if (filterData != null && filterData.isNotEmpty) {
+                    setState(() {
+                      _data = filterData;
+                      _isFiltered = true;
+                      if (_data.length < 10) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
+                    });
+                  } else if (filterData != null && filterData.isEmpty) {
+                    CommonDialogs.shared.showNotifyDialog(
+                      tittle: 'No se encontraron cursos',
+                      contentString: 'No fué posible obtener coincidencias',
+                    );
+                  }
+                }
+              },
+              icon: Row(
+                children: [
+                  Text(_isFiltered ? 'Quitar filtro' : 'Buscar'),
+                  const SizedBox(width: 5),
+                  Icon(_isFiltered ? Icons.close : Icons.search),
+                ],
+              ),
+            ),
+          ],
+        ),
         const SizedBox(height: 10),
         SizedBox(
           height: 50,
@@ -87,7 +126,6 @@ class _CoursesWidgetState extends State<CoursesWidget> {
           ),
         ),
         const SizedBox(height: 20),
-
         FutureBuilder(
           future: _future,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -103,7 +141,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                 child: NoExistData(text: 'Ocurrió un error al obtener los cursos'),
               );
             }
-            _data = snapshot.data!;
+            if (!_isFiltered) _originalData = snapshot.data!;
+            if (!_isFiltered) _data = snapshot.data!;
             if (_data.length < 10) _currentMax = _data.length < _itemsPerPage ? _data.length : _itemsPerPage;
             return ListView.builder(
               shrinkWrap: true,

@@ -1,3 +1,4 @@
+import 'package:finny_test_dev/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class NoExistData extends StatelessWidget {
           Icon(
             icon,
             size: MediaQuery.of(context).size.width * 0.2,
-            color: Get.isDarkMode ? Colors.white : Color(0xFFAE55EE),
+            color: Get.isDarkMode ? Colors.white : AppColors.shared.purple1,
           ),
           Text(text, style: TextStyle(fontSize: 19)),
         ],

@@ -14,7 +14,7 @@ class CourseService {
     final url = Uri.https('learn.microsoft.com', '/api/catalog/', {
       'locale': 'es-es',
       'type': 'modules',
-      if (category != null) 'subject': category.subject,
+      'subject': category?.subject == null ? 'app-development' : category!.subject!,
     });
 
     try {
@@ -22,6 +22,7 @@ class CourseService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> decoded = jsonDecode(response.body);
         final List<dynamic> data = decoded['modules'] ?? [];
+        debugPrint('${data.length} RESULTADOS.');
         return ModelUtils.fromList(data, Module.fromJson);
       } else {
         debugPrint('Error en la petición: ${response.statusCode}');

@@ -1,4 +1,6 @@
+import 'package:finny_test_dev/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserAvatar extends StatelessWidget {
   final String name;
@@ -16,7 +18,10 @@ class UserAvatar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(name, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-            Text(position, style: TextStyle(fontSize: 16, color: Color(0xFF6D7280))),
+            Text(
+              position,
+              style: TextStyle(fontSize: 16, color: context.isDarkMode ? Colors.white70 : AppColors.shared.gray1),
+            ),
           ],
         ),
       ],

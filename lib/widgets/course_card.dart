@@ -26,7 +26,7 @@ class CourseCard extends StatelessWidget {
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: BoxBorder.all(color: Colors.black12),
+            border: BoxBorder.all(color: context.isDarkMode ? Color(0xFFDDB8FA) : Colors.black12),
           ),
           child: Row(
             children: [

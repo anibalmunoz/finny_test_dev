@@ -1,6 +1,8 @@
 import 'package:finny_test_dev/models/module_model.dart';
 import 'package:finny_test_dev/repositories/favorites_repository.dart';
+import 'package:finny_test_dev/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 
 class FavoriteButton extends StatefulWidget {
   final Module course;
@@ -45,19 +47,29 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.black26),
+          border: Border.all(color: context.isDarkMode ? Colors.white : Colors.black26),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               isFavorite! ? Icons.star : Icons.star_border,
-              color: isFavorite! ? const Color(0xFFAE55EE) : Colors.black26,
+              color: isFavorite!
+                  ? AppColors.shared.purple1
+                  : context.isDarkMode
+                  ? null
+                  : Colors.black26,
             ),
             const SizedBox(width: 5),
             Text(
               isFavorite! ? 'Favorito' : 'Agregar favorito',
-              style: TextStyle(color: isFavorite! ? const Color(0xFFAE55EE) : Colors.black87),
+              style: TextStyle(
+                color: isFavorite!
+                    ? AppColors.shared.purple1
+                    : context.isDarkMode
+                    ? null
+                    : Colors.black87,
+              ),
             ),
           ],
         ),

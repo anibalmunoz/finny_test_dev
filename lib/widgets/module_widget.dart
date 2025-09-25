@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:finny_test_dev/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ModuleWidget extends StatelessWidget {
   final String title;
@@ -37,7 +39,13 @@ class ModuleWidget extends StatelessWidget {
                   children: [
                     Image.asset('assets/icons/clock-five-opa.png'),
                     const SizedBox(width: 5),
-                    Text('$minutos minutos', style: TextStyle(fontSize: 16, color: Color(0xFF6D7280))),
+                    Text(
+                      '$minutos minutos',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: context.isDarkMode ? Colors.white70 : AppColors.shared.gray1,
+                      ),
+                    ),
                   ],
                 ),
               ],

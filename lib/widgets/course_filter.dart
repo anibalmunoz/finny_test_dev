@@ -28,11 +28,7 @@ class CourseFilter extends StatelessWidget {
               if (iconAsset != null) Image.asset(iconAsset!),
               Text(
                 label,
-                style: TextStyle(
-                  color: isActive ? Color(0xFF400C5F) : Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: TextStyle(color: isActive ? Color(0xFF400C5F) : null, fontSize: 16, fontWeight: FontWeight.w400),
               ),
             ],
           ),
