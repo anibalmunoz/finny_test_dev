@@ -10,6 +10,18 @@ class CourseService {
   CourseService._privateConstructor();
   static final CourseService shared = CourseService._privateConstructor();
 
+  List<CategoryModel> categories = [
+    CategoryModel(label: 'Todos los cursos'),
+    CategoryModel(label: 'Inversiones', iconAsset: 'assets/icons/money-1.png', subject: 'supply-chain-management'),
+    CategoryModel(
+      label: 'Finanzas personales',
+      iconAsset: 'assets/icons/wallet-1-dollar.png',
+      subject: 'finance-accounting',
+    ),
+    CategoryModel(label: 'Planificación', iconAsset: 'assets/icons/education.png', subject: 'productivity'),
+    CategoryModel(label: 'Deuda', iconAsset: 'assets/icons/credit.png', subject: 'classification-analysis'),
+  ];
+
   Future<List<Module>> fetchData({CategoryModel? category}) async {
     final url = Uri.https('learn.microsoft.com', '/api/catalog/', {
       'locale': 'es-es',
