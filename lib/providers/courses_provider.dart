@@ -43,9 +43,9 @@ class CoursesProvider extends ChangeNotifier {
   }
 
   Future<void> loadMore() async {
-    isFetching = true;
-    await Future.delayed(const Duration(milliseconds: 1500));
     if (_currentMax < _displayedCourses.length) {
+      isFetching = true;
+      await Future.delayed(const Duration(milliseconds: 1500));
       _currentMax = (_currentMax + itemsPerPage).clamp(0, _displayedCourses.length);
     }
     isFetching = false;
