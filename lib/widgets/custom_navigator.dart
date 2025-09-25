@@ -12,7 +12,7 @@ class CustomNavigator extends StatefulWidget {
 class _CustomNavigatorState extends State<CustomNavigator> {
   final List<IconData> _icons = [Icons.home, Icons.pie_chart_outline, Icons.school, Icons.storefront];
 
-  final List<String> _labels = ["Inicio", "Presupuesto", "Academy", "Productos"];
+  final List<String> _labels = ["Inicio", "Presupuesto", "Academy", "Favoritos"];
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<NavigatorProvider>(context);

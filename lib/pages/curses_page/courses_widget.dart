@@ -115,19 +115,21 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                       : const SizedBox.shrink();
                 }
                 final course = _data[index];
-                return CourseCard(
-                  category: 'Finanzas Personales',
-                  title: course.title ?? 'N/D',
-                  description: course.summary ?? 'N/D',
-                  rating: course.rating?.average ?? 0,
-                  reviews: course.rating?.count ?? 0,
-                  imageUrl: course.socialImageUrl ?? '',
-                );
+                return CourseCard(category: _getCategoryBySubject(course.subjects ?? []), course: course);
               },
             );
           },
         ),
       ],
     );
+  }
+
+  CategoryModel _getCategoryBySubject(List<String> subjects) {
+    for (var category in categories) {
+      if (category.subject != null && subjects.contains(category.subject)) {
+        return category;
+      }
+    }
+    return categories[2];
   }
 }
