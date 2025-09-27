@@ -1,7 +1,6 @@
 import 'package:finny_test_dev/providers/favorites_provider.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class FavoritesCourses extends StatelessWidget {
@@ -33,7 +32,7 @@ class FavoritesCourses extends StatelessWidget {
               const SizedBox(height: 10),
               provider.isLoading
                   ? Container(
-                      margin: EdgeInsets.only(top: Get.height * 0.15),
+                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
                       child: LoadingWidget(),
                     )
                   : provider.favorites.isEmpty

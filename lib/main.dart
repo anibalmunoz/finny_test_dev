@@ -1,8 +1,10 @@
+import 'package:finny_test_dev/pages/curses_page/course_detail_page/course_detail_page.dart';
 import 'package:finny_test_dev/pages/home_page/home_page.dart';
 import 'package:finny_test_dev/providers/navigator_provider.dart';
 import 'package:finny_test_dev/utils/app_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'themes/app_theme.dart';
@@ -26,13 +28,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    final _router = GoRouter(
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => const HomePage()),
+        GoRoute(
+          path: '/course-detail',
+          builder: (context, state) {
+            final course = state.extra as Map<String, dynamic>;
+            return CourseDetailPage(course: course['course'], category: course['category']);
+          },
+        ),
+      ],
+    );
+
+    return GetMaterialApp.router(
       title: 'Finny frontend test',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.shared.lightTheme(),
       darkTheme: AppTheme.shared.darkTheme(),
       themeMode: AppTheme.shared.isInDarkMode ? ThemeMode.dark : ThemeMode.light,
-      home: const HomePage(),
+      routerDelegate: _router.routerDelegate,
+      routeInformationParser: _router.routeInformationParser,
+      routeInformationProvider: _router.routeInformationProvider,
     );
   }
 }

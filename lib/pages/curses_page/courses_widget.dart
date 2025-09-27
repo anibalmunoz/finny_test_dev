@@ -1,8 +1,8 @@
 import 'package:finny_test_dev/providers/courses_provider.dart';
 import 'package:finny_test_dev/services/course_service.dart';
+import 'package:finny_test_dev/widgets/common_dialogs.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class CoursesWidget extends StatelessWidget {
@@ -39,7 +39,17 @@ class CoursesWidget extends StatelessWidget {
                         provider.clearFilter();
                       } else {
                         final filteredData = await showSearchCoursesDialog(context: context, courses: provider.courses);
-                        if (filteredData != null) provider.filterCourses(filteredData);
+                        if (filteredData == null) {
+                          return;
+                        } else if (filteredData.isEmpty) {
+                          CommonDialogs.shared.showNotifyDialog(
+                            context,
+                            tittle: 'Sin resultados',
+                            contentString: 'No se encontrar cursos con este nombre',
+                          );
+                          return;
+                        }
+                        provider.filterCourses(filteredData);
                       }
                     },
                     icon: Row(
@@ -75,12 +85,12 @@ class CoursesWidget extends StatelessWidget {
               const SizedBox(height: 20),
               provider.isLoading
                   ? Container(
-                      margin: EdgeInsets.only(top: Get.height * 0.15),
+                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
                       child: LoadingWidget(),
                     )
                   : provider.courses.isEmpty
                   ? Container(
-                      margin: EdgeInsets.only(top: Get.height * 0.15),
+                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
                       child: NoExistData(text: 'No fué posible obtener información'),
                     )
                   : ListView.builder(

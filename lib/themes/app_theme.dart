@@ -8,8 +8,8 @@ class AppTheme {
 
   bool isInDarkMode = Preferences.isDarkMode;
 
-  Future changeTheme() async {
-    final bool isDarkMode = Get.isDarkMode;
+  Future changeTheme(BuildContext context) async {
+    final bool isDarkMode = context.isDarkMode;
     Get.changeTheme(isDarkMode ? AppTheme.shared.lightTheme() : AppTheme.shared.darkTheme());
     Get.changeThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
     await Preferences.saveValue(AppConfig.isDarkMode, !isDarkMode);

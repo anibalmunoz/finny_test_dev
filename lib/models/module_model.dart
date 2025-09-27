@@ -55,6 +55,24 @@ class Module {
     subjects: json["subjects"] == null ? [] : List<String>.from(json["subjects"]!.map((x) => x)),
   );
 
+  Map<String, dynamic> toJson() => {
+    "summary": summary,
+    "products": products == null ? [] : List<dynamic>.from(products!.map((x) => x)),
+    "uid": uid,
+    "title": title,
+    "duration_in_minutes": durationInMinutes,
+    "rating": rating?.toJson(),
+    "popularity": popularity,
+    "icon_url": iconUrl,
+    "social_image_url": socialImageUrl,
+    "last_modified": lastModified?.toIso8601String(),
+    "url": url,
+    "firstUnitUrl": firstUnitUrl,
+    "units": units == null ? [] : List<dynamic>.from(units!.map((x) => x)),
+    "number_of_children": numberOfChildren,
+    "subjects": subjects == null ? [] : List<dynamic>.from(subjects!.map((x) => x)),
+  };
+
   Map<String, dynamic> toDatabase() => {
     'uid': uid,
     'summary': summary,

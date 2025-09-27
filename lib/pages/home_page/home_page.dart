@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     final provider = Provider.of<NavigatorProvider>(context);
 
     return Scaffold(
-      appBar: getCustomAppBar(),
+      appBar: getCustomAppBar(context),
       body: simpleNavigation(provider.selectedIndex),
       bottomNavigationBar: CustomNavigator(),
     );

@@ -1,10 +1,10 @@
 import 'package:finny_test_dev/models/category_model.dart';
 import 'package:finny_test_dev/models/module_model.dart';
-import 'package:finny_test_dev/pages/curses_page/course_detail_page/course_detail_page.dart';
 import 'package:finny_test_dev/utils/formatters.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class CourseCard extends StatelessWidget {
   final Module course;
@@ -19,9 +19,8 @@ class CourseCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () async {
-          await Get.to(CourseDetailPage(course: course, category: category));
-          onReturn?.call();
+        onTap: () {
+          context.push('/course-detail', extra: {'course': course, 'category': category}).then((_) => onReturn?.call());
         },
         child: Container(
           padding: EdgeInsets.all(5),

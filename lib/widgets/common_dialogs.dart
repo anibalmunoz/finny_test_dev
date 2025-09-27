@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CommonDialogs {
   CommonDialogs._();
@@ -10,7 +9,8 @@ class CommonDialogs {
 
   final bool _isIos = !kIsWeb && Platform.isIOS ? true : false;
 
-  Future showNotifyDialog({
+  Future showNotifyDialog(
+    BuildContext context, {
     required String tittle,
     String? contentString,
     Widget? content,
@@ -21,7 +21,7 @@ class CommonDialogs {
   }) async {
     await showDialog(
       barrierDismissible: barrierDismissible ?? true,
-      context: Get.context!,
+      context: context,
       builder: (context) => _isIos
           ? CupertinoAlertDialog(
               title: Text(tittle),
