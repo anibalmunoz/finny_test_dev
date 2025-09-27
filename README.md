@@ -1,12 +1,12 @@
 # Finny frontend mobile test
 
-## Ejecución del proyecto [Video](https://drive.google.com/file/d/1H1iFFLVU88-f-7eTVQ0-PQckw8CsyKmi/view?usp=sharing)
+## Ejecución del proyecto ([Video de demostración](https://drive.google.com/file/d/1H1iFFLVU88-f-7eTVQ0-PQckw8CsyKmi/view?usp=sharing))
 
 ### Prerrequisitos:
 
 - Se debe tener instalado el SDK de flutter, también se debe tener instalado Android Studio para activar un dispositivo virtual activo o en su defecto, tener conectado un móvil android con modo desarrollador y depuración USB activada. 
 
-- Se recomienta Android debido a que este test en particular se trabajó en windows por lo que la prueba de ejecución en un dispositivo iOS aunque no debería dar inconveniente no está garantizada.
+- Se recomienda Android debido a que este test en particular se trabajó en windows por lo que la prueba de ejecución en un dispositivo iOS aunque no debería dar inconvenientes, no está garantizada.
 
 ### Ejecución
 
@@ -16,7 +16,7 @@
 
 3. Tener un emulador o dispositivo físico listo, seleccionarlo y ejecutar `flutter run`.
 
-## Deciciones técnicas
+## Decisiones técnicas
 
 ### Arquitectura
 
@@ -47,7 +47,7 @@
 
  ### Funcionalidades clave
 
- - **Gestión de estado y gestión de temas:** Se utilizan 2 dependencias que se pueden utilizar para gestionar estados, [get](https://pub.dev/packages/get) y [provider](https://pub.dev/packages/provider), se decidió así para mostrar las bondades de ambas, aunque en un proyecto se puede decidir con cual trabajar. Yo la verdad recomiendo ambas. Por ejempo get se utilizó para administrar el modo oscuro y claro, también par acceder al contexto, datos de la interfaz como ancho y alto total (cosas que no tiene provider). Y provider se utilizó para la gestión del estado de las 3 páginas principales (lista de cursos, cursos favoritos y detalle de curso) debido a que su integración y reacción es excelente.
+ - **Gestión de estado y gestión de temas:** Se utilizan 2 dependencias que se pueden utilizar para gestionar estados, [get](https://pub.dev/packages/get) y [provider](https://pub.dev/packages/provider), se decidió así para mostrar las bondades de ambas, aunque en un proyecto se puede decidir con cual trabajar, recomiendo usar ambas. Por ejemplo get se utilizó para administrar el modo oscuro y claro, También para acceder al contexto y a datos de la interfaz, como ancho y alto total. Y provider se utilizó para la gestión del estado de las 3 páginas principales (lista de cursos, cursos favoritos y detalle de curso) debido a que su integración y reacción es excelente.
 
  - **Consumo de API:** Se utilizó [http](https://pub.dev/packages/http) por su fácil integración y excelente rendimiento.
 
@@ -57,9 +57,9 @@
 
 <img src="readme_images/main.png" alt="Main" width="400"/>
 
- - **Persistencia local de datos:** [sqflite](https://pub.dev/packages/sqflite) fué la herramienta para almacenar los cursos favoritos, este crea basicamente una base de datos sql minificada en el dispositivo, con una respuesta de consulta excelente y con las bondades que ofrece cualquier base de datos, como queries un poco mas complejos. Y para el almacenamiento del modo oscuro (recordar la decisión del usuario) se utilizó [shared_preferences](https://pub.dev/packages/shared_preferences), esta dependencia es funcional para este tipo de datos simples como booleans.
+ - **Persistencia local de datos:** [sqflite](https://pub.dev/packages/sqflite) fué la herramienta para almacenar los cursos favoritos, este crea basicamente una base de datos sql minificada en el dispositivo, con una respuesta eficiente y las funcionalidades típicas de una base de datos, como queries un poco mas complejos. Y para el almacenamiento del modo oscuro (recordar la decisión del usuario) se utilizó [shared_preferences](https://pub.dev/packages/shared_preferences), esta dependencia es funcional para este tipo de datos simples como booleans.
 
-- **Diseño, manejo visual de errores o data vacía, navegador, botones, íconos, etc:** Todo estó fué manejado enteramente con los widgets que ya trae flutter. La maquetación se realizó con base al Figma provisto, y el modo oscuro fué hecho a criterio personal.
+- **Diseño, manejo visual de errores o data vacía, navegador, botones, íconos, etc:** Todo esto fue manejado enteramente con los widgets que ya trae flutter. La maquetación se realizó con base al Figma provisto, y el modo oscuro fué hecho a criterio personal.
 
 <table>
   <tr>
