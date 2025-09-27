@@ -52,7 +52,7 @@ class CourseDetailPage extends StatelessWidget {
               const SizedBox(height: 5),
               if (course.subjects != null && course.subjects!.isNotEmpty)
                 Text(
-                  formatSubjects(course.subjects),
+                  Formatters.subjects(course.subjects),
                   style: TextStyle(fontSize: 16, color: context.isDarkMode ? Colors.white70 : AppColors.shared.gray1),
                 ),
               const SizedBox(height: 5),
@@ -64,7 +64,7 @@ class CourseDetailPage extends StatelessWidget {
                   const SizedBox(width: 20),
                   Image.asset(context.isDarkMode ? 'assets/icons/clock-five-white.png' : 'assets/icons/clock-five.png'),
                   const SizedBox(width: 10),
-                  Text('${formatMinutesToHours(course.durationInMinutes ?? 0)} '),
+                  Text('${Formatters.minutesToHours(course.durationInMinutes ?? 0)} '),
                 ],
               ),
               const SizedBox(height: 20),
@@ -86,40 +86,11 @@ class CourseDetailPage extends StatelessWidget {
               CustomLabel(label: 'Módulos', icon: Icons.error_outline),
               const SizedBox(height: 20),
               if (course.units != null && course.units!.isNotEmpty)
-                ...course.units!.map((unit) => ModuleWidget(title: getModuleName(unit))),
+                ...course.units!.map((unit) => ModuleWidget(title: Formatters.moduleName(unit))),
             ],
           ),
         ),
       ),
     );
-  }
-
-  String formatMinutesToHours(int minutes) {
-    final hours = minutes ~/ 60;
-    final remainingMinutes = minutes % 60;
-    if (hours > 0) {
-      return remainingMinutes > 0 ? '$hours horas $remainingMinutes minutos' : '$hours horas';
-    } else {
-      return '$remainingMinutes minutos';
-    }
-  }
-
-  String formatSubjects(List<String>? subjects) {
-    if (subjects == null || subjects.isEmpty) return '';
-    final first = subjects.first;
-    final capitalizedFirst = first[0].toUpperCase() + first.substring(1);
-    final rest = subjects.skip(1).join(', ');
-    final subject = rest.isNotEmpty ? '$capitalizedFirst, $rest' : capitalizedFirst;
-    return subject.replaceAll('-', ' ');
-  }
-
-  String getModuleName(String original) {
-    int lastDot = original.lastIndexOf('.');
-    String name = (lastDot != -1) ? original.substring(lastDot + 1) : original;
-    name = name.replaceAll('-', ' ');
-    if (name.isNotEmpty) {
-      name = name[0].toUpperCase() + name.substring(1);
-    }
-    return name;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:finny_test_dev/models/category_model.dart';
 import 'package:finny_test_dev/models/module_model.dart';
 import 'package:finny_test_dev/pages/curses_page/course_detail_page/course_detail_page.dart';
+import 'package:finny_test_dev/utils/formatters.dart';
 import 'package:finny_test_dev/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -77,7 +78,7 @@ class CourseCard extends StatelessWidget {
                         Icon(Icons.star, color: Color(0xFFC78AF6), size: 16),
                         const SizedBox(width: 4),
                         Text(
-                          '(${formatReviews(course.rating?.count ?? 0)} reseñas)',
+                          '(${Formatters.reviews(course.rating?.count ?? 0)} reseñas)',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ],
@@ -90,17 +91,5 @@ class CourseCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String formatReviews(int reviews) {
-    if (reviews >= 1000000) {
-      double value = reviews / 1000000;
-      return '${value.toStringAsFixed(value.truncateToDouble() == value ? 0 : 1)}M';
-    } else if (reviews >= 1000) {
-      double value = reviews / 1000;
-      return '${value.toStringAsFixed(value.truncateToDouble() == value ? 0 : 1)}K';
-    } else {
-      return reviews.toString();
-    }
   }
 }
