@@ -23,7 +23,7 @@ class CoursesProvider extends ChangeNotifier {
   bool get isFetching => _isfetching;
   set isFetching(bool val) {
     _isfetching = val;
-    // notifyListeners();
+    notifyListeners();
   }
 
   CoursesProvider({this.itemsPerPage = 10});
