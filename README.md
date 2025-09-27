@@ -1,6 +1,6 @@
 # Finny frontend mobile test
 
-## Ejecución del proyecto [Video]()
+## Ejecución del proyecto [Video](https://drive.google.com/file/d/1H1iFFLVU88-f-7eTVQ0-PQckw8CsyKmi/view?usp=sharing)
 
 ### Prerrequisitos:
 
